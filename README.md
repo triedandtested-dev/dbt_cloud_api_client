@@ -6,13 +6,13 @@
 # dbt cloud api client
 dbt cloud api client
 
-Usage:
+## Usage:
 
-## Install Client.
+### Install Client.
 ```
 pip install dbt-cloud-api-client
 ```
-## Example.
+### Example.
 ```python
 import time
 
@@ -35,9 +35,9 @@ while not run.is_finished():
 print('{} - {}'.format(run.id, run.status))
 ```
 
-# Contributing
+## Contributing
 
-## Install tox
+### Install tox
 ```
 pip install tox
 ```
