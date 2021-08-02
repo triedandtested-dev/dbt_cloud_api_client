@@ -41,7 +41,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run tox
-        run: tox
+        run: tox -e py
 
       # Runs a set of commands using the runners shell
 #       - name: Run a multi-line script
