@@ -32,7 +32,8 @@ jobs:
           architecture: 'x64'
       - name: Generate Report
         run: |
-          pip install coverage
+          pip install -r requirements.txt
+          pip install -r tests/requirements.txt
           python setup.py develop
           coverage run -m unittest
         
