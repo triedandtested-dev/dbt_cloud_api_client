@@ -36,6 +36,7 @@ jobs:
           pip install -r tests/requirements.txt
           python setup.py develop
           coverage run -m unittest
+          coverage report -m
         
       - name: Upload Coverage to Codecov
         uses: codecov/codecov-action@v2
