@@ -60,6 +60,8 @@ class Account(EndPoint):
 
     def get(self):
         self._data = self._get_data(self.endpoint)
+        for key in self._data.keys():
+            self.__setattr__(key, self._data[key])
 
     def get_jobs(self):
 

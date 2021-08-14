@@ -31,9 +31,15 @@ class Job(EndPoint):
         self._data = data
         self._account = account
 
+        if 'id' not in data.keys():
+            raise RuntimeError("'id' is a required entry in data.")
+
+        for key in data.keys():
+            self.__setattr__(key, self._data[key])
+
     @classmethod
     def fromdict(cls, datadict, account):
-        "Initialize Job from a DBT cloud data dictionary"
+        """Initialize Job from a DBT cloud data dictionary"""
         return cls(datadict, account=account)
 
     def _get_token(self):
@@ -41,22 +47,12 @@ class Job(EndPoint):
 
     @property
     def endpoint(self):
-        return '{}{}{}/'.format(self._account.endpoint, JOBS_ENDPOINT, self.id)
-
-    @property
-    def id(self):
-        return self._data['id']
-
-    @property
-    def name(self):
-        return self._data['name']
-
-    @property
-    def data(self):
-        return self._data
+        return '{}{}{}/'.format(self._account.endpoint, JOBS_ENDPOINT, self.__getattribute__('id'))
 
     def reload(self):
         self._data = self._get_data(self.endpoint)
+        for key in self._data.keys():
+            self.__setattr__(key, self._data[key])
 
     def run(self, cause, payload={}):
 
@@ -66,4 +62,10 @@ class Job(EndPoint):
         # run uri
         endpoint = '{}{}'.format(self.endpoint, 'run/')
 
-        return JobRun(self._post_data(endpoint, payload), self._account)
+        return JobRun(data=self._post_data(endpoint, payload), account=self._account)
+
+    def __eq__(self, other):
+        if isinstance(other, Job):
+            return self._data == other._data
+
+        return False
