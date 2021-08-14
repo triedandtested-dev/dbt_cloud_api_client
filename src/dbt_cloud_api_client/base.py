@@ -7,7 +7,7 @@ class EndPoint(metaclass=ABCMeta):
 
     @abstractmethod
     def _get_token(self):
-        pass
+        """ A Method to return the token required for the endpoint. """
 
     def __get_headers__(self):
         return {

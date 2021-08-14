@@ -42,7 +42,7 @@ class BaseTests(unittest.TestCase):
 
         endpoint = TestEndpoint()
 
-        json = {
+        expected = {
             "status": {
                 "code": 200,
                 "is_success": True,
@@ -53,11 +53,11 @@ class BaseTests(unittest.TestCase):
         }
 
         responses.add(responses.GET, 'http://test/api/1/foobar',
-                      json=json, status=200)
+                      json=expected, status=200)
 
         actual = endpoint._get_data('http://test/api/1/foobar')
 
-        self.assertEqual(json['data'], actual)
+        self.assertEqual(expected['data'], actual)
         self.assertEqual(1, len(responses.calls))
 
         request = responses.calls[0].request
@@ -196,13 +196,3 @@ class BaseTests(unittest.TestCase):
 
         with self.assertRaises(RuntimeError):
             TestEndpoint()._handle_response(test)
-
-
-        # thing = ProductionClass()
-        # thing.method = MagicMock(return_value=3)
-        # thing.method(3, 4, 5, key='value')
-        # 3
-        # thing.method.assert_called_with(3, 4, 5, key='value')
-
-
-
