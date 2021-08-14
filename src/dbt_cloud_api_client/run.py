@@ -1,5 +1,3 @@
-import requests
-
 from .base import EndPoint
 
 RUN_ENDPOINT = 'runs/'

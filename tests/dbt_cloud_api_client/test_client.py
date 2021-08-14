@@ -1,11 +1,9 @@
 import unittest
-# from unittest.mock import MagicMock
 
 from dbt_cloud_api_client.client import DbtCloudClient
 
 
 class DbtCloudClientTests(unittest.TestCase):
-    # expected = 'https://cloud.getdbt.com/api/v2/accounts/'
 
     def test_client_default_endpoint(self):
 

@@ -35,29 +35,24 @@ class Account(EndPoint):
         if 'id' not in data.keys():
             raise RuntimeError("'id' is a required entry in data.")
 
+        for key in data.keys():
+            self.__setattr__(key, self._data[key])
+
     def _get_token(self):
         return self._client.token
 
     @property
     def endpoint(self):
-        return '{}{}{}/'.format(self._client.endpoint, ACCOUNTS_ENDPOINT, self.id)
+        return '{}{}{}/'.format(self._client.endpoint, ACCOUNTS_ENDPOINT, self.__getattribute__('id'))
 
     @classmethod
     def fromdict(cls, datadict, client):
-        "Initialize Account from a DBT cloud data dictionary"
+        """Initialize Account from a DBT cloud data dictionary"""
         return cls(datadict, client=client)
 
     @property
     def data(self):
         return self._data
-
-    @property
-    def id(self):
-        return self._data['id']
-
-    @property
-    def name(self):
-        return self._data['name']
 
     @property
     def client(self):
@@ -68,7 +63,7 @@ class Account(EndPoint):
 
     def get_jobs(self):
 
-        jobs = Jobs(self)
+        jobs = Jobs(account=self)
         jobs.reload()
 
         return jobs.data

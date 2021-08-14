@@ -26,7 +26,6 @@ class JobTests(unittest.TestCase):
 
         self.assertEqual(expected, actual)
 
-
     # def test_client_endpoint_with_custom_port(self):
     #
     #     expected = 'https://cloud.getdbt.com:8080/api/v2/'
