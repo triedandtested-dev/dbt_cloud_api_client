@@ -1,7 +1,6 @@
 [![PyPI version](https://badge.fury.io/py/dbt-cloud-api-client.svg)](https://badge.fury.io/py/dbt-cloud-api-client)
 [![PyPI Supported Python Versions](https://img.shields.io/pypi/pyversions/dbt-cloud-api-client)](https://pypi.org/project/dbt-cloud-api-client/)
 [![CI](https://github.com/triedandtested-dev/dbt_cloud_api_client/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/triedandtested-dev/dbt_cloud_api_client/actions/workflows/main.yml)
-<!-- [![GitHub Actions (Tests)](https://github.com/ymyzk/tox-gh-actions/workflows/Tests/badge.svg)](https://github.com/ymyzk/tox-gh-actions) -->
 [![codecov](https://codecov.io/gh/triedandtested-dev/dbt_cloud_api_client/branch/main/graph/badge.svg?token=DLO47S89XY)](https://codecov.io/gh/triedandtested-dev/dbt_cloud_api_client)
 
 # dbt cloud api client
