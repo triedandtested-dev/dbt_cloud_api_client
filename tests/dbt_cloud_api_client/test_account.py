@@ -120,29 +120,29 @@ class AccountTests(unittest.TestCase):
             'name': 'expected_name'
         }
 
-        with patch('dbt_cloud_api_client.account.Jobs') as mJobs:
+        with patch('dbt_cloud_api_client.account.Jobs') as m_jobs:
 
-            type(mJobs()).data = PropertyMock(return_value=['job'])
+            type(m_jobs()).data = PropertyMock(return_value=['job'])
 
             account = Account.fromdict(data, client=self.client)
 
             jobs = account.get_jobs()
 
-            mJobs().reload.assert_called_once_with()
+            m_jobs().reload.assert_called_once_with()
             self.assertEqual(['job'], jobs)
 
     def test_account_get_job_by_id(self):
 
         data = {'id': 1232}
 
-        with patch('dbt_cloud_api_client.account.Job') as mJob:
+        with patch('dbt_cloud_api_client.account.Job') as m_job:
             account = Account.fromdict(data, client=self.client)
 
             job = account.get_job_by_id(12)
 
-            mJob.assert_called_once_with(data={'id': 12}, account=account)
-            mJob().reload.assert_called_once_with()
-            self.assertEqual(mJob(), job)
+            m_job.assert_called_once_with(data={'id': 12}, account=account)
+            m_job().reload.assert_called_once_with()
+            self.assertEqual(m_job(), job)
 
     def test_account_get_job_by_name(self):
 
@@ -164,9 +164,9 @@ class AccountTests(unittest.TestCase):
 
         account = Account.fromdict({'id': 1232}, client=self.client)
 
-        mJobs = MagicMock()
-        mJobs.return_value = [Job.fromdict({'id': 12, 'name': 'test'}, account)]
-        account.get_jobs = mJobs
+        m_jobs = MagicMock()
+        m_jobs.return_value = [Job.fromdict({'id': 12, 'name': 'test'}, account)]
+        account.get_jobs = m_jobs
 
         with self.assertRaises(RuntimeError) as e:
             account.get_job_by_name('not_real_job')
