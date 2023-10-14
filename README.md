@@ -37,6 +37,11 @@ print('{} - {}'.format(run.id, run.status))
 
 ## Contributing
 
+### Via Container
+```
+docker-compose run --rm dbt_cloud_api_client
+```
+
 ### Install tox
 ```
 pip install tox

@@ -1,0 +1,10 @@
+version: "3"
+services:
+  dbt_cloud_api_client:
+    volumes:
+      - .:/app
+    image: dbt_cloud_api_client
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: tox run
